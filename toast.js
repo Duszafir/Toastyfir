@@ -10,7 +10,7 @@ const icons = {
     info: infoIcon
 }
 
-function toastyfir({ title = "", text = "", type = "info", duration = 3000 }) {
+export function toastyfir({ title = "", text = "", type = "info", duration = 3000 }) {
     const container = getContainer();
 
     const divContainer = document.createElement("div");
