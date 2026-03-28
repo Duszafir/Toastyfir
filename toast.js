@@ -10,11 +10,14 @@ const icons = {
     info: infoIcon
 }
 
-export function toastyfir({ title = "", text = "", type = "info", duration = 3000 }) {
+export function toastyfir({ title = "", text = "", type = "info", duration = 3000, bgColor = "#22242f" , txtColor = "#d9d9d9"}) {
     const container = getContainer();
 
     const divContainer = document.createElement("div");
     divContainer.classList.add("toast", type);
+    divContainer.style.setProperty('--temp', duration + 'ms')
+    divContainer.style.setProperty('--bg-toast', bgColor)
+    divContainer.style.setProperty('--text-color', txtColor)
 
     container.appendChild(divContainer);
 

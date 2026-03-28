@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-    --text-color: hsl(0, 0%, 85%);
+    --text-color: #d9d9d9;
     --background-color: hsl(220, 7%, 8%);
+    --bg-toast: #22242f;
+    --temp: 3000ms;
 }
 
 body {
@@ -32,7 +34,7 @@ body {
     grid-template-columns: 60px 1fr 40px;
     border-radius: 5px;
     --color: #0abf30;
-    background-image: linear-gradient(to right, #0abf3055, #22242f 30%);
+    background-image: linear-gradient(to right, #0abf3055, var(--bg-toast) 30%);
     animation: show .3s ease 1 forwards;
     pointer-events: auto;
     overflow: hidden;
@@ -79,7 +81,7 @@ body {
     height: 3px;
     content: '';
     box-shadow: 0 0 10px var(--color);
-    animation: timeOut 3s linear 1 forwards;
+    animation: timeOut var(--temp) linear 1 forwards;
 }
 
 @keyframes show {
@@ -104,12 +106,12 @@ body {
 
 .toast.error {
     --color: #f24d4c;
-    background-image: linear-gradient(to right, #f24d4c55, #22242f 30%);
+    background-image: linear-gradient(to right, #f24d4c55, var(--bg-toast) 30%);
 }
 
 .toast.info {
     --color: #3498db;
-    background-image: linear-gradient(to right, #3498db55, #22242f 30%);
+    background-image: linear-gradient(to right, #3498db55, var(--bg-toast) 30%);
 }
 
 @media screen and (max-width: 480px) {
