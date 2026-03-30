@@ -10,27 +10,46 @@ const icons = {
     info: infoIcon
 }
 
-export function toastyfir({ title = "", text = "", type = "info", duration = 3000, bgColor = "#22242f" , txtColor = "#d9d9d9"}) {
+/**
+ * Crea un toast
+ * @example
+ * toastyfir({
+        title: 'Notificación',
+        text: 'Esta es la descripción',
+        type: 'info',
+        duration: 3000,
+        bgColor: "#8495f5",
+        txtColor: "#d9d9d9"
+    })
+    @param {Object} options - Opciones para configurar el toast
+    @param {string} options.title - Título del toast
+    @param {string} options.text - Descripción del toast
+    @param {"success" | "error" | "info"} [options.type="info"] - Tipo de toast
+    @param {number} [options.duration=3000] - Duración en milisegundos
+    @param {string} [options.bgColor="#22242f"] - Color de fondo
+    @param {string} [options.txtColor="#d9d9d9"] - Color del texto
+    @returns {void}
+ */
+
+function toastyfir({ title = "", text = "", type = "info", duration = 3000, bgColor = "#22242f" , txtColor = "#d9d9d9"}) {
     const container = getContainer();
 
     const divContainer = document.createElement("div");
-    divContainer.classList.add("toast", type);
-    divContainer.style.setProperty('--temp', duration + 'ms')
-    divContainer.style.setProperty('--bg-toast', bgColor)
-    divContainer.style.setProperty('--text-color', txtColor)
+    divContainer.classList.add("toastyfir-toast", type);
+    divContainer.style.setProperty('--toastyfir-temp', duration + 'ms')
+    divContainer.style.setProperty('--toastyfir-bg-toast', bgColor)
+    divContainer.style.setProperty('--toastyfir-text-color', txtColor)
 
     container.appendChild(divContainer);
 
     createContent(divContainer, title, text, icons[type]);
 
     const x = document.createElement("div");
-    x.classList.add("x");
+    x.classList.add("toastyfir-x");
     x.innerHTML = closeIcon;
     x.onclick = () => divContainer.classList.add("hide");
 
     divContainer.appendChild(x);
-
-    setTimeout(() => divContainer.classList.add("show"), 10);
 
     setTimeout(() => {
         divContainer.classList.add("hide");
@@ -41,11 +60,11 @@ export function toastyfir({ title = "", text = "", type = "info", duration = 300
 }
 
 function getContainer() {
-    let container = document.querySelector(".notifications");
+    let container = document.querySelector(".toastyfir-notifications");
 
     if (!container) {
         container = document.createElement("div");
-        container.classList.add("notifications");
+        container.classList.add("toastyfir-notifications");
         document.body.appendChild(container);
     }
 
@@ -54,18 +73,18 @@ function getContainer() {
 
 function createContent(divContainer, title, text, icon) {
     const svgIcon = document.createElement("div");
-    svgIcon.classList.add("icon");
+    svgIcon.classList.add("toastyfir-icon");
     svgIcon.innerHTML = icon;
 
     const content = document.createElement("div");
-    content.classList.add("content");
+    content.classList.add("toastyfir-content");
 
     const titleEl = document.createElement("div");
-    titleEl.classList.add("title");
+    titleEl.classList.add("toastyfir-title");
     titleEl.textContent = title;
 
     const span = document.createElement("span");
-    span.classList.add("span");
+    span.classList.add("toastyfir-span");
     span.textContent = text;
 
     content.appendChild(titleEl);
